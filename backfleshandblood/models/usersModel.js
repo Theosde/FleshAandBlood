@@ -11,9 +11,12 @@ var AdresseSchema = mongoose.Schema({
 var HistoricSchema = mongoose.Schema({
     date : Date,
     total : Number,
-    status : ["Paid","Delivery","Finish"],
+    status : String,
     article : [Object],
-    FDP: Number
+    fdp: Number,
+    adress: String,
+    buyername: String,
+    buyeremail: String
 
 });
 
