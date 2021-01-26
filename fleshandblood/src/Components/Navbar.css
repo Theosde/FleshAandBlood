@@ -11,7 +11,7 @@
         z-index: 2;   
     }
 
-    .navs__content__basic > a,.navs__content__right > a{
+    .navs__content__basic > a,.navs__content__right > a,.navs__content__right > div > a{
         text-decoration: none;
         color: gray;
         padding-left: 20px;
@@ -19,7 +19,7 @@
         font-weight: 500;
         cursor: pointer;
     }
-    .navs__content__basic > a:hover,.navs__content__right > a:hover{
+    .navs__content__basic > a:hover,.navs__content__right > a:hover,.navs__content__right > div > a:hover{
         color: black!important;
     }
     .logo_navs{
@@ -73,7 +73,6 @@
     .right_sideDark > .icon_links:hover > .MuiSvgIcon-root{
         color: white!important;
     }
-
     .navbar__Dropdown{
         display:block;
         position:fixed;
@@ -103,3 +102,58 @@
         display: flex;
         align-items: center;
     }
+
+/*IPHONE X*/
+/* Portrait and Landscape */
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+    .navs__content__basic{
+        flex-direction: column;
+        height: auto;
+        align-items: center;
+    }
+    .navs__content__basic a{
+        margin-bottom: 10px;
+    }
+    .navs__content__right{
+        position: relative;
+        right: 0;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+  
+/*GALAXY NOTE 9*/
+@media only screen and (min-width: 414px) and (max-width: 767px) {
+    .navs__content__basic{
+        flex-direction: column;
+        height: auto;
+        align-items: center;
+    }
+    .navs__content__basic a{
+        margin-bottom: 10px;
+    }
+    .navs__content__right{
+        position: relative;
+        right: 0;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+  
+/* redmi note Xioamin 5_7 et samsung note 9*/
+@media only screen and (min-width: 280px) and (max-width: 767px) {
+    .navs__content__basic{
+        flex-direction: column;
+        height: auto;
+        align-items: center;
+    }
+    .navs__content__basic a{
+        margin-bottom: 10px;
+    }
+    .navs__content__right{
+        position: relative;
+        right: 0;
+        flex-direction: column;
+        align-items: center;
+    }
+}

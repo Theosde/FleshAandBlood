@@ -1,11 +1,11 @@
 
-import React, {useState,useEffect} from 'react'
+import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import ShoppingCartSharpIcon from '@material-ui/icons/ShoppingCartSharp';
 import './Navbar.css'
 
 import { useSelector, useDispatch } from 'react-redux'
-import { signin, navigate, resetUser } from '../actions/index'
+import { signin, resetUser } from '../actions/index'
 
 function Navbar() {
 //========================================================================================================================================================
@@ -46,15 +46,20 @@ RETURN
                 Sign-In 
             </Link>
             :
-            <Link
-                onClick={()=>{
-                    setActive(1)
-                    dispatch(signin())
-                    dispatch(resetUser())
-                }}
-                className={active===1?'active_navs':''} to='/'>
-                Disconnect 
-            </Link>
+            <div>
+                <Link onClick={()=> setActive(5)} className={active===5?'active_navs':''} to='/my-command'>
+                    My Commands 
+                </Link>
+                <Link
+                    onClick={()=>{
+                        setActive(1)
+                        dispatch(signin())
+                        dispatch(resetUser())
+                    }}
+                    className={active===1?'active_navs':''} to='/'>
+                    Disconnect 
+                </Link>
+            </div>
             }
             <Link 
                 onClick={()=>setActive(6)} 
@@ -89,6 +94,10 @@ RETURN
                 Sign-In 
             </Link>
             :
+            <div>
+            <Link onClick={()=> setActive(5)} className={active===5?'active_navs':''} to='/my-command'>
+                My Commands 
+            </Link>
             <Link
                 onClick={()=> {
                     setActive(1)
@@ -98,6 +107,7 @@ RETURN
                 className={active===1?'active_navs':''} to='/'>
                 Disconnect 
             </Link>
+            </div>
             }
             <Link 
                 onClick={()=>setActive(6)} 

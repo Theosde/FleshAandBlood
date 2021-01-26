@@ -355,7 +355,7 @@ For select menu and calculate delivery fees
                 </div>
                 
                 <div onClick={()=>resetSelectedCountry()}
-                    className='buttonsreturncart' style={{marginTop:80}}>
+                    className='buttons__return__cart' style={{marginTop:80}}>
                             Back to Cart
                 </div>
                 

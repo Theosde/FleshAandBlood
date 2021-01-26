@@ -1,6 +1,6 @@
 
 
-import React from "react";
+import React,{useState} from "react";
 import './ProductCard.css'
 import './Cards.css'
 
@@ -9,6 +9,8 @@ import { addToCart,addToTotal,increment } from '../actions/index'
 
 function Cards(props){
 
+  const [newquantity,setNewquantity] = useState(0)
+
 //========================================================================================================================================================
 /* 
 FUNCTION CALLED ON CLICK
@@ -16,10 +18,11 @@ FUNCTION CALLED ON CLICK
 //========================================================================================================================================================
 function addProduct (){
  
-  
+  setNewquantity(newquantity+1)
   dispatch(increment(1))
   dispatch(addToTotal(props.price))
   dispatch(addToCart({
+      brand:props.brand,
       src:props.url, 
       title:props.name, 
       desc:props.brand,
@@ -53,9 +56,9 @@ RETURN
                 <div className='vertical_card_text_flex'>
                   <h2>{props.name}</h2>            
                 </div>
-                {props.quantity===0?<div className='out_of_stock'>OUT OF STOCK</div>:<span>{props.price}€</span>}
-                {props.quantity>0?<div style={{color:'grey'}}>In stock : {props.quantity}</div>:<div></div>}
-                {props.quantity>0?<div className='btn__addToCart' onClick={()=> addProduct()}>Add to Cart</div>:<div></div>}
+                {props.quantity-newquantity>0?<span>{props.price}€</span>:<div className='out_of_stock'>OUT OF STOCK</div>}
+                {props.quantity-newquantity>0?<div style={{color:'grey'}}>In stock : {props.quantity - newquantity}</div>:<div></div>}
+                {props.quantity-newquantity>0?<div className='btn__addToCart' onClick={()=> addProduct()}>Add to Cart</div>:<div></div>}
               </div>
             </div>
 

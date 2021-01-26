@@ -18,6 +18,7 @@ import ArcSealed from "./CataloguePage/product/ArcSealed";
 import CruSealed from "./CataloguePage/product/CruSealed";
 import MonSealed from "./CataloguePage/product/MonSealed";
 import SignIn from "./ContactPage/SignIn";
+import Command from "./CommandPage/Command"
 
 
 const store = createStore(allReducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
@@ -67,6 +68,9 @@ function App() {
         </Route>
         <Route  path="/sign-in">
           <SignIn/>
+        </Route>
+        <Route  path="/my-command">
+          <Command/>
         </Route>
       </Router>
     </Provider>

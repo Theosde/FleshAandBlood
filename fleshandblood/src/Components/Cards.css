@@ -83,7 +83,7 @@
     height: 110px;
     text-align: center;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     padding: 10px;
     position: relative;
@@ -93,6 +93,9 @@
   }
   .vertical_card_text > h2{
     margin-top: 10px;
+  }
+  .vertical_card_text > div > h2{
+    height: 42px;
   }
   .vertical_card_read_more{
     position: absolute;
@@ -166,11 +169,11 @@
     .cards__content{
       flex: 1;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
-      width: 80%;
-      max-width: 300px;
+      flex-wrap: wrap;
+      width: 100%!important;
+      max-width: 360px;
       margin-left: 0;
       padding: 0;
     }
@@ -179,7 +182,7 @@
       max-width: 300px;
     }
     .vertical_card{
-      margin: 20px 0;
+      margin: 20px 10px;
     }
     .cardsRow__container{
       width: 100%!important;
@@ -254,11 +257,9 @@
       .vertical_card{
         width: 220px;
         height: auto;
-        background-color: white;
-        box-shadow: 0 0 0 1px rgba(0,0,0,.15), 0 2px 3px rgba(0,0,0,.2);
         color: black;
         display: flex;
-        margin: 20px 0;
+        margin: 20px 10px;
       }
       .vertical_card_text{
         height: 135px;

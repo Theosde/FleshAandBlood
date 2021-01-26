@@ -27,7 +27,7 @@ function CruSealed() {
             setlistProduct(data.productSealed)
         })
         .catch((error)=>{
-            console.log("Request failed recup product arc", error );
+            console.log("Request failed recup product cru", error );
         })
 
     }, [])

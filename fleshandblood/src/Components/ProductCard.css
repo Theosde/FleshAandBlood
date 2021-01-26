@@ -264,8 +264,6 @@ a{
       .vertical_card{
         width: 220px;
         height: auto;
-        background-color: white;
-        box-shadow: 0 0 0 1px rgba(0,0,0,.15), 0 2px 3px rgba(0,0,0,.2);
         color: black;
         display: flex;
         margin: 20px 0;
@@ -344,3 +342,154 @@ a{
     padding: 10px 95px;
     width: 230px;
  }
+
+
+
+
+
+
+ /*IPHONE X*/
+/* Portrait and Landscape */
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+  .cards_displayPage{
+    flex-direction: column-reverse;
+    padding-top: 245px;
+  }
+  .cards_displayPage_filters{
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding-top: 25px;
+    padding-bottom: 25px;
+  }
+  .cards_displayPage_filters a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .cards_displayPage_filters .buttons__product__basic{
+    margin-top: 0;
+  }
+  .cardsRow__container{
+    margin-left: 0!important;
+  }
+  .cards__content{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%!important;
+  }
+  .vertical_card{
+    width: 100px!important;
+  }
+  .vertical_card__picture{
+    width: 100px!important;
+    height: 140px!important;
+  }
+  .vertical_card_text,.vertical_card_text_flex{
+    font-size: 11px;
+  }
+  .vertical_card_text_flex h2{
+    font-size: 9px!important;
+  }
+  .btn__addToCart{
+    width: 72px!important;
+  }
+}
+
+/*GALAXY NOTE 9*/
+@media only screen and (min-width: 414px) and (max-width: 767px) {
+  .cards_displayPage{
+    flex-direction: column-reverse;
+    padding-top: 245px;
+  }
+  .cards_displayPage_filters{
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding-top: 25px;
+    padding-bottom: 25px;
+  }
+  .cards_displayPage_filters a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .cards_displayPage_filters .buttons__product__basic{
+    margin-top: 0;
+  }
+  .cardsRow__container{
+    margin-left: 0!important;
+  }
+  .cards__content{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%!important;
+  }
+  .vertical_card{
+    width: 120px!important;
+  }
+  .vertical_card__picture{
+    width: 100px!important;
+    height: 140px!important;
+  }
+  .vertical_card_text,.vertical_card_text_flex{
+    font-size: 11px;
+  }
+  .vertical_card_text_flex h2{
+    font-size: 9px!important;
+  }
+  .btn__addToCart{
+    width: 72px!important;
+  }
+}
+
+/* redmi note Xioamin 5_7 et samsung note 9*/
+@media only screen and (min-width: 280px) and (max-width: 767px) {
+  .cards_displayPage{
+    flex-direction: column-reverse;
+    padding-top: 245px;
+  }
+  .cards_displayPage_filters{
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding-top: 25px;
+    padding-bottom: 25px;
+  }
+  .cards_displayPage_filters a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .cards_displayPage_filters .buttons__product__basic{
+    margin-top: 0;
+  }
+  .cardsRow__container{
+    margin-left: 0!important;
+  }
+  .cards__content{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%!important;
+  }
+  .vertical_card{
+    width: 100px!important;
+    height: auto!important;
+  }
+  .vertical_card__picture{
+    width: 100px!important;
+    height: 140px!important;
+  }
+  .vertical_card_text,.vertical_card_text_flex{
+    font-size: 11px;
+  }
+  .vertical_card_text_flex h2{
+    font-size: 9px!important;
+  }
+  .btn__addToCart{
+    width: 72px!important;
+  }
+}

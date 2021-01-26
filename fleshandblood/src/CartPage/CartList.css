@@ -110,12 +110,18 @@
     margin-top: 25px;
     box-shadow: 0 5px 10px rgba(0,0,0,.2);
 }
-.cart__cartList input{
+.cart__cartList input,.cart__cartList select{
     height: 40px;
     min-width: 350px;
     padding: 0 10px;
     margin-bottom: 10px;
     border: 1px solid lightgray;
+}
+.cart__cartList select{
+    width: calc(100%);
+}
+.cart__cartList select:focus{
+    outline: none;
 }
 .buttons__validate__cart{
     background-color: white;
@@ -139,4 +145,67 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+/*IPHONE X*/
+/* Portrait and Landscape */
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+ .cart__cartList{
+     padding: 245px 0 55px 0!important;
+ }
+ .cart__product{
+     width: 90%;
+     margin: 10px 5%;
+     padding:10px 10px;
+     font-size: 9px;
+ }
+ .cart__product p{
+     width: auto;
+ }
+ .Total__cart_container,.buttons__return__cart,.buttons__return__cart2{
+     position: relative;
+     right: 0;
+     top: 0;
+ }
+}
+  
+/*GALAXY NOTE 9*/
+@media only screen and (min-width: 414px) and (max-width: 767px) {
+
+}
+  
+/* redmi note Xioamin 5_7 et samsung note 9*/
+@media only screen and (min-width: 280px) and (max-width: 767px) {
+    .cart__cartList{
+        padding: 245px 0 55px 0!important;
+    }
+    .cart__product{
+        width: 90%;
+        margin: 10px 5%;
+        padding:10px 10px;
+        font-size: 11px;
+        flex-direction: column;
+    }
+    .cart__product p{
+        width: 100%;
+        margin: 5px 0;
+        text-align: center;
+    }
+    .Total__cart_container,.buttons__return__cart,.buttons__return__cart2{
+        position: relative;
+        right: 0;
+        top: 0;
+    }
+    .form__container__payment{
+        min-width: 280px;
+        width: 90%;
+        padding:25px 5px
+    }
+    .cart__cartList input{
+        min-width: 200px;
+    }
+    .cart__cartList select{
+        min-width: 200px;
+        width: 222px!important;
+    }
 }
