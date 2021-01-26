@@ -1,0 +1,142 @@
+.App > p{
+    margin-top: 0;
+}
+.cart__cartList{
+    height:'auto';
+    width:100%;
+    box-sizing: border-box;
+    padding: 7rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.cart__product{
+    width: 60%;
+    background-color: white;
+    margin-left: 20%;
+    box-sizing: border-box;
+    padding: 10px 35px;
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    margin: 10px 20%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.cart__product > p{
+    font-weight: 600;
+    color: gray;
+    width: 25%;
+}
+.cart__product > img{
+    width: 70px;
+}
+.total__box{
+    background-color: white;
+    width: 350px;
+    position: absolute;
+    top: 185px;
+    right: 55px;
+    box-sizing: border-box;
+    padding: 35px 10px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+.total__box > p{
+    margin: 0;
+    margin-bottom: 15px;
+}
+.total__box_productName{
+    width: 100%;
+    text-align: left;
+}
+.total__box_container{
+    width: 94%;
+    margin-left: 3%;
+    display: flex;
+    justify-content: space-between;
+}
+.buttons__return__cart{
+    position: fixed;
+    background-color: white;
+    right: 45px;
+    top: 215px;
+    min-width: 150px;
+    text-align: center;
+    padding: 10px 15px;
+    margin-top: 25px;
+    color: #999;
+    transition: 0.5s linear;
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    cursor: pointer;
+}
+.buttons__return__cart2{
+    position: fixed;
+    cursor: pointer;
+    background-color: white;
+    right: 45px;
+    top: 265px;
+    min-width: 150px;
+    text-align: center;
+    padding: 10px 15px;
+    margin-top: 25px;
+    color: #999;
+    transition: 0.5s linear;
+    box-shadow: 0 5px 10px rgba(0,0,0,.2); 
+}
+.buttons__return__cart:hover{
+    background-color: black;
+    color: white;
+}
+.buttons__return__cart2:hover,.buttons__validate__cart:hover{
+    background-color: rgb(29, 175, 53);
+    color: white;
+}
+
+
+.Total__cart_container{
+    position: fixed;
+    right: 45px;
+    top: 100px;
+    color: #999;
+    background-color: white;
+    min-width: 150px;
+    text-align: center;
+    padding: 40px 15px;
+    margin-top: 25px;
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+.cart__cartList input{
+    height: 40px;
+    min-width: 350px;
+    padding: 0 10px;
+    margin-bottom: 10px;
+    border: 1px solid lightgray;
+}
+.buttons__validate__cart{
+    background-color: white;
+    min-width: 150px;
+    text-align: center;
+    padding: 10px 15px;
+    margin-top: 25px;
+    color: #999;
+    transition: 0.5s linear;
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    cursor: pointer;
+}
+.form__container__payment{
+    background-color: white;
+    box-sizing: border-box;
+    min-width:400px;
+    height: auto;
+    padding: 55px 75px;
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

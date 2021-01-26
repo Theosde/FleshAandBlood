@@ -1,0 +1,20 @@
+.first__line{
+    width: 80%;
+    margin-left: 10%;
+    display: flex;
+    justify-content: space-evenly;
+    box-sizing: border-box;
+    padding: 145px 0 0 0;
+}
+.first__line > a{
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.2s linear;
+}
+.first__line > a:hover{
+    transform: scale(1.2);
+}
+.first__line  img{
+    border-radius: 10px;
+}
+

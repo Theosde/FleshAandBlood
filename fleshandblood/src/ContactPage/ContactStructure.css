@@ -1,0 +1,17 @@
+
+.about__container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.about__infos{
+    width: 80%;
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    margin-left: 10%;
+    min-height: 400px;
+    height: auto;
+    box-sizing: border-box;
+    padding:45px;
+    background-color: white;
+}

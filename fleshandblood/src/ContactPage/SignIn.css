@@ -1,0 +1,47 @@
+.signin__page{
+    display: flex;
+}
+.subscribe__form__container,.login__form__container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 50%;
+    box-sizing: border-box;
+    min-height: 100vh;
+}
+.subscribe__form__container{
+    border: 3px solid white;
+}
+
+.subscribe__form__container > input,.login__form__container > input{
+    width: 40%;
+    margin-bottom: 15px;
+    height: 40px;
+    border:  1px solid lightgray;
+    padding: 0 10px;
+}
+.subscribe__form__container > input:focus,.login__form__container > input:focus{
+    outline: none;
+}
+
+.subscribe__form__container > input::placeholder,.login__form__container > input::placeholder{
+    color: #999;
+}
+.buttons__register{
+    background-color: white;
+    right: 45px;
+    top: 100px;
+    min-width: 150px;
+    text-align: center;
+    padding: 10px 15px;
+    margin-top: 25px;
+    color: #999;
+    transition: 0.5s linear;
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    cursor: pointer;
+}
+.buttons__register:hover{
+    background-color: black;
+    color: white;
+}

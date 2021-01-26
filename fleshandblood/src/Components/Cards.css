@@ -1,0 +1,336 @@
+
+.cards__content{
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 80%;
+    padding: 25px;
+  }
+  .out_of_stock{
+    color: crimson;
+    font-weight: bold;
+  }
+  .cardsRow__container{
+    width: 80%;
+    margin-left: 20%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    padding: 25px 0;
+    background-color: #eEeEeE;
+  }
+  .separator {
+    height: 5px;
+    width: 40px;
+    margin: 10px 0;
+    border-radius: 3px;
+    background-image: linear-gradient(to right top, #ff594d, #ff773e, #ff942f, #ffb225, #face28);
+  }
+  .separator_black {
+    height: 5px;
+    width: 40px;
+    margin: 10px 0;
+    border-radius: 3px;
+    background-color: black;
+  }
+  .separator_grey {
+    height: 5px;
+    width: 40px;
+    margin: 10px 0;
+    border-radius: 3px;
+    background-color: #E4E6EB;
+  }
+  .vertical_card{
+    width: 255px;
+    height: 480px;
+    max-height: 700px;
+    background-color: rgba(0,0,0,0);
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    margin: 25px;
+  }
+  .vertical_card_text_flex {
+    display: flex;
+    align-items: center;
+  }
+  .vertical_card_text > span{
+    margin-left: 5px;
+    color: green;
+    font-weight: bold;
+  }
+  .vertical_card_text_flex > h2{
+    margin: 0;
+    font-size: 16px;
+  }
+  /* ici changer pour site serge------------------------------------------------------------------------------------------------------------------------*/
+  .vertical_card__picture {
+    width: 255px;
+    height: 365px;
+    max-height: 415px;
+    background-position: center;
+    transition: linear 0.2s;
+  }
+  .vertical_card__picture:hover{
+    transform: scale(1.1);
+  }
+  /* au dessus changer pour site serge------------------------------------------------------------------------------------------------------------------*/
+  .vertical_card_text {
+    display: flex;
+    height: 110px;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    position: relative;
+  }
+  .vertical_card_text > p {
+    font-size: 12px;
+  }
+  .vertical_card_text > h2{
+    margin-top: 10px;
+  }
+  .vertical_card_read_more{
+    position: absolute;
+    font-size: 14px;
+    display: flex;
+    border-radius: 3px;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    bottom: 10px;
+    right: 10px;
+    padding: 7px 15px;
+    color: white;
+    cursor: pointer;
+    background-image: linear-gradient(to right top, #ff594d, #ff773e, #ff942f, #ffb225, #face28);
+  }
+  .vertical_card_read_more_black{
+    font-size: 14px;
+    display: flex;
+    border-radius: 3px;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    padding: 7px 15px;
+    color: white;
+    cursor: pointer;
+    background-color: black;
+  }
+  .btn__addToCart{
+    font-size: 14px;
+    display: flex;
+    border-radius: 3px;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    padding: 7px 15px;
+    color: white;
+    cursor: pointer;
+    background-color: black;
+    opacity: 0.8;
+    margin-top: 10px;
+  }
+  .btn__addToCart:hover{
+    opacity: 1;
+  }
+  .vertical_card_read_more_grey{
+    position: absolute;
+    font-size: 14px;
+    display: flex;
+    border-radius: 3px;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    bottom: 10px;
+    right: 10px;
+    padding: 7px 15px;
+    color: black;
+    cursor: pointer;
+    background-color: #E4E6EB;
+  }
+  .vertical_card_read_more:hover,.vertical_card_read_more_black:hover {
+    opacity: 0.8;
+  }
+  .vertical_card_read_more_grey:hover{
+    background-color: #D8DADF;
+  }
+  
+  
+  /* iphone 5-SE-6-7-8-X - 6+-7+-8+-X  Pixel2*/
+  @media screen and (max-width: 759px){
+    .cards__content{
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 80%;
+      max-width: 300px;
+      margin-left: 0;
+      padding: 0;
+    }
+    .vertical_cardDark{
+      margin: 20px 0!important;
+      max-width: 300px;
+    }
+    .vertical_card{
+      margin: 20px 0;
+    }
+    .cardsRow__container{
+      width: 100%!important;
+      max-width: 475px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: auto;
+      padding: 0;
+    }
+    .horizontal_card{
+      width: 340px;
+      height: 150px;
+      background-color: white;
+      box-shadow: 0 0 0 1px rgba(0,0,0,.15), 0 2px 3px rgba(0,0,0,.2);
+      color: black;
+      display: flex;
+      margin: 10px 0;
+    }
+    .separator{
+      margin: 2px 0;
+    }
+    .horizontal_card_text{
+      max-height: auto;
+    }
+    .horizontal_card_text > p {
+      font-size: 9px;
+      margin: 2px 0;
+    }
+    .horizontal_card_text  > h2{
+      margin-bottom: 0;
+    }
+    .horizontal_card_text > h2{
+      margin-top: 2px;
+    }
+    
+    .horizontal_card_read_more{
+      position: absolute;
+      font-size: 14px;
+      display: flex;
+      border-radius: 3px;
+      justify-content: center;
+      align-items: center;
+      width: 70px;
+      bottom: 10px;
+      right: 10px;
+      padding: 4px 10px;
+      color: white;
+      cursor: pointer;
+      background-image: linear-gradient(to right top, #ff594d, #ff773e, #ff942f, #ffb225, #face28);
+    }
+  }
+    /* Galaxy Fold */
+    @media screen and (max-width: 300px){
+  
+      .cardsRow__container{
+        width: 280px!important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: auto;
+        padding: 0;
+        overflow-x: hidden;
+      }
+      .vertical_cardDark{
+        margin: 20px 0!important;
+        width: 220px!important;
+        height: auto;
+      }
+      .vertical_card{
+        width: 220px;
+        height: auto;
+        background-color: white;
+        box-shadow: 0 0 0 1px rgba(0,0,0,.15), 0 2px 3px rgba(0,0,0,.2);
+        color: black;
+        display: flex;
+        margin: 20px 0;
+      }
+      .vertical_card_text{
+        height: 135px;
+      }
+      .vertical_card_text > p {
+        font-size: 9px;
+        margin: 2px 0;
+      }
+      .vertical_card_text > h2{
+        margin-top: 2px;
+        font-size: 12px;
+      }
+  
+      .separator_black {
+        height: 5px;
+        width: 40px;
+        margin: 2px 0;
+        border-radius: 3px;
+        background-color: black;
+    }
+  
+    }
+  
+    /*ADD THIS FOR DARK CARD*/
+    .vertical_cardDark{
+      width: 300px;
+      height: auto;
+      max-height: 700px;
+      background-color: #333;
+      color: white;
+      box-shadow: 0 0 0 1px rgba(0,0,0,.15), 0 2px 3px rgba(0,0,0,.2);
+      display: flex;
+      flex-direction: column;
+      margin: 25px;
+    }
+  
+
+    
+   .buttons__content__basic{
+    background-color: #E4E6EB;
+    border-radius: 3px;
+    border:1px solid lightgray;
+    cursor: pointer;
+    margin: 10px;
+    font-size: 14px;
+    text-align: center;
+    max-width: 230px;
+    font-weight: 600;
+    color: #555;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ }
+ .buttons__content__basic:hover,
+ .buttons__content__basic:hover,
+ .buttons__content__basic:hover,
+ .buttons__content__basic:hover{
+    background-color: #D8DADF;
+ }
+ .short{
+    padding: 5px 10px;
+    width: 60px;
+ }
+ .average{
+    padding: 7px 15px;
+    width: 110px;
+ }
+ .large{
+    padding: 10px 35px;
+    width: 110px;
+ }
+ .extralarge{
+    padding: 10px 95px;
+    width: 230px;
+ }
