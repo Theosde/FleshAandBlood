@@ -22,12 +22,12 @@ function addProduct (){
   dispatch(increment(1))
   dispatch(addToTotal(props.price))
   dispatch(addToCart({
-      brand:props.brand,
-      src:props.url, 
-      title:props.name, 
-      desc:props.brand,
-      price:props.price,
-      quantity: 1
+    src:props.url, 
+    title:props.name, 
+    quantity: 1,
+    price:props.price,
+    category:props.category,
+    brand:props.brand
   }))
 
 }

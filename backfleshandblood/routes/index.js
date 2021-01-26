@@ -86,7 +86,9 @@ router.post('/verifQuantityBDD', async function(req, res, next) {
 
   var listEdition = []
   order.forEach(element => {
-    listEdition.push(element.brand)
+    if (element.brand != undefined) {
+      listEdition.push(element.brand)
+    }
     
   });
   console.log(listEdition);
@@ -95,7 +97,20 @@ router.post('/verifQuantityBDD', async function(req, res, next) {
 
   for (let i = 0; i < order.length; i++) {
 
-    if(order[i].brand == "arc"){
+    if (order[i].category === undefined) {
+
+      await productModel.findOne({"name":order[i].title}, function(error,cards){
+        var diffQuantity = cards.quantity - order[i].quantity
+        if (diffQuantity < 0 ) {
+          console.log("Pas assez de SOTCK");
+          var manque = order[i].quantity - cards.quantity
+          // gestion error ==> pas assez de carte en stock
+          errorStock.push(order[i].title)
+        }
+      })
+
+
+    }else if(order[i].brand == "arc"){
 
       await arcModel.findOne({"name":order[i].title}, function(error,cards){
         var diffQuantity = cards.quantity - order[i].quantity
