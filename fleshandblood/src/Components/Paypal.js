@@ -1,48 +1,124 @@
 import React  from 'react'
 import { PayPalButton } from "react-paypal-button-v2";
 
+import { useSelector, useDispatch } from 'react-redux'
+import { decrement,addUser,changeOrder } from '../actions/index'
+
+import { useHistory } from "react-router-dom";
+
+
 function Paypal(props) {
+    const dispatch = useDispatch()
+    var history = useHistory()
+
 
         return (
           <PayPalButton
-          
+
             createOrder={(data, actions) => {
                 
                 console.log('ORDER CREATED')
-                console.log(data)
-                
-                
+
                 return actions.order.create({
-                    address_name:{
-                        address_line_1:"2 Rue de la paix",
-                        postal_code:"69100",
-                    },
+                    
                     purchase_units: [{
                     amount: {
                     currency_code: "EUR",
-                    value: props.total
+                    value: props.totalFtp
                     },
                 }],
+                application_context: {
+                    shipping_preference: "NO_SHIPPING"
+                }
             });
         }}
-        
-            
+
             onApprove={(data, actions) => {
                 console.log('OK FOR PAYMENT')
+
                 // Capture the funds from the transaction
                 return actions.order.capture().then(function(details) {
+
+
                 // Show a success message to your buyer
                 alert("Transaction completed by " + details.payer.name.given_name);
-                    console.log(actions)
-                // OPTIONAL: Call your server to save the transaction
-                //   return fetch("/paypal-transaction-complete", {
-                //     method: "post",
-                //     body: JSON.stringify({
-                //       orderID: data.orderID
-                //     })
-                //   });
+
+                // ---------------- ROUTE verfi and decrement BDD ----------------- //
+
+                fetch("http://localhost:3000/verifQuantityBDD",{
+                    method: "POST",
+                    body: JSON.stringify({
+                        panier: props.panier,
+                        paid: true
+                    }),
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                      }
+                }).then(response=> {
+                    return response.json()
+                })
+                .then(data=>{
+                    console.log(data);
+
+                    console.log(props.userData);
+                    console.log(props.panier);
+                    console.log(props.total);
+                    console.log(props.ftp);
+
+                    // ---------------- ROUTE Save historic order ----------------- //
+                    fetch("http://localhost:3000/users/saveCommand",{
+                        method: "POST",
+                        body: JSON.stringify({
+                            idUser : props.userData._id,
+                            total: props.total,
+                            panier: props.panier,
+                            ftp:props.ftp,
+                            paid: true,
+                        }),
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                          }
+                    }).then(response=> {
+                        return response.json()
                     })
-                }}
+                    .then(data=>{
+                        console.log(data);
+                        // maj user and vider panier
+                        dispatch(addUser(data.user))
+                        dispatch(changeOrder([]))
+
+                        history.push("/")
+            
+                    })
+                    .catch((error)=>{
+                        console.log("Request failed recup user", error );
+                    })
+
+
+
+
+        
+                })
+                .catch((error)=>{
+                    console.log("Request failed recup user", error );
+                })
+
+
+
+
+
+
+
+
+
+
+
+
+                })
+
+            }}
 
             onCancel={(data)=>{
                     //redirect to user cart component

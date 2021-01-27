@@ -98,7 +98,6 @@ REMOVE ITEM FROM FRONT END AND FROM REDUX ARRAY AT SAME TIME
     var confFormulaire = ()=>{
         console.log(userData.arr);
         console.log(formLivraison);
-
        
         fetch("http://localhost:3000/users/updateAdresseLivraison",{
             method: "POST",
@@ -136,7 +135,7 @@ REMOVE ITEM FROM FRONT END AND FROM REDUX ARRAY AT SAME TIME
             method: "POST",
             body: JSON.stringify({
                 panier:cart,
-                paid: true
+                paid: false
             }),
             headers: {
                 'Accept': 'application/json',
@@ -347,8 +346,11 @@ For select menu and calculate delivery fees
                         <div className="payment-div">
                             <Paypal
                             onClick={confFormulaire} 
-                            total={roundDecimal(totalOrder + deliveryFees)}
-                            deliveryAdress={userData.adress}
+                            totalFtp={roundDecimal(totalOrder + deliveryFees)}
+                            total={roundDecimal(totalOrder)}
+                            userData={userData.arr}
+                            panier={cart}
+                            ftp={deliveryFees}
                             />
                         </div> 
                     </div>

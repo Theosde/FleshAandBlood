@@ -99,6 +99,8 @@ router.post('/verifQuantityBDD', async function(req, res, next) {
 
     if (order[i].category === undefined) {
 
+      
+
       await productModel.findOne({"name":order[i].title}, function(error,cards){
         var diffQuantity = cards.quantity - order[i].quantity
         if (diffQuantity < 0 ) {
@@ -106,6 +108,19 @@ router.post('/verifQuantityBDD', async function(req, res, next) {
           var manque = order[i].quantity - cards.quantity
           // gestion error ==> pas assez de carte en stock
           errorStock.push(order[i].title)
+        }else{
+
+          if (req.body.paid) {
+            productModel.findOneAndUpdate(
+              {"name":order[i].title},
+              {"quantity":diffQuantity},
+              {new:true},
+              function(error,userupdate){
+              
+              }
+            )
+          }
+
         }
       })
 
@@ -119,6 +134,17 @@ router.post('/verifQuantityBDD', async function(req, res, next) {
           var manque = order[i].quantity - cards.quantity
           // gestion error ==> pas assez de carte en stock
           errorStock.push(order[i].title)
+        }else{
+          if (req.body.paid) {
+            arcModel.findOneAndUpdate(
+              {"name":order[i].title},
+              {"quantity":diffQuantity},
+              {new:true},
+              function(error,userupdate){
+              
+              }
+            )
+          }
         }
       })
 
@@ -131,6 +157,17 @@ router.post('/verifQuantityBDD', async function(req, res, next) {
           var manque = order[i].quantity - cards.quantity
           // gestion error ==> pas assez de carte en stock
           errorStock.push(order[i].title)
+        }else{
+          if (req.body.paid) {
+            cruModel.findOneAndUpdate(
+              {"name":order[i].title},
+              {"quantity":diffQuantity},
+              {new:true},
+              function(error,userupdate){
+              
+              }
+            )
+          }
         }
       })
       
@@ -143,6 +180,17 @@ router.post('/verifQuantityBDD', async function(req, res, next) {
           var manque = order[i].quantity - cards.quantity
           // gestion error ==> pas assez de carte en stock
           errorStock.push(order[i].title)
+        }else{
+          if (req.body.paid) {
+            monModel.findOneAndUpdate(
+              {"name":order[i].title},
+              {"quantity":diffQuantity},
+              {new:true},
+              function(error,userupdate){
+              
+              }
+            )
+          }
         }
       })
       
@@ -155,6 +203,17 @@ router.post('/verifQuantityBDD', async function(req, res, next) {
           var manque = order[i].quantity - cards.quantity
           // gestion error ==> pas assez de carte en stock
           errorStock.push(order[i].title)
+        }else{
+          if (req.body.paid) {
+            wtrModel.findOneAndUpdate(
+              {"name":order[i].title},
+              {"quantity":diffQuantity},
+              {new:true},
+              function(error,userupdate){
+              
+              }
+            )
+          }
         }
       })
       
@@ -162,8 +221,14 @@ router.post('/verifQuantityBDD', async function(req, res, next) {
 
   }
 
-  
-  res.json({result:true, errorStock})
+  if (req.body.paid) {
+    res.json({result:true, order:req.body.panier})
+
+  }else{
+    res.json({result:true, errorStock})
+
+  }
+    
 
 
 

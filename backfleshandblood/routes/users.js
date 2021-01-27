@@ -105,14 +105,17 @@ router.post('/saveCommand', function(req, res, next) {
 
       var dateNow = Date.now()
       var historiComand = findUser.historic
-      var infoPanier = req.body.panier
 
       // Ajout du panier dans historic
       historiComand = [...findUser.historic, {
         date: dateNow,
-        total: infoPanier.total,
-        article: [{name:"hello"},{name:"world"}],
-        status: "Paid"
+        total: req.body.total,
+        article: [req.body.panier],
+        status: "Paid",
+        fdp: req.body.ftp,
+        adress: findUser.adress.street + " " + findUser.adress.zip + " " + findUser.adress.city + " " + findUser.adress.country,
+        buyername: findUser.firstname + " " + findUser.lastname,
+        buyeremail: findUser.email
        }]
 
       // Modifier BDD
