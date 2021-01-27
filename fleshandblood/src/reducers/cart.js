@@ -11,7 +11,6 @@ const cartReducer = (state = initialCartState, action) => {
                 arr: [...state.arr,action.payload]
             }
         case 'REMOVE_FROM_CART':
-            console.log('remove carte');
             return {
                 ...state,
                 arr: [

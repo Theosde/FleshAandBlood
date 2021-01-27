@@ -3,12 +3,13 @@ import React,{ useState, useEffect } from 'react'
 import ClearIcon from '@material-ui/icons/Clear';
 
 import { useSelector, useDispatch } from 'react-redux'
-import { removeFromTotal,decrement,removeFromCart,addUser,changeOrder } from '../actions/index'
+import { decrement,removeFromCart,addUser,changeOrder } from '../actions/index'
 
 import './CartList.css'
 import { Link } from 'react-router-dom';
 
 import { useHistory } from "react-router-dom";
+import Paypal from '../Components/Paypal';
 
 
 
@@ -69,8 +70,7 @@ STATE, SELECTOR FOR REDUX AND USE EFFECT
 
 
     useEffect(() => {
-        console.log("modifer card");
-
+        
     }, [cart,totalOrder])
 
 
@@ -90,7 +90,7 @@ REMOVE ITEM FROM FRONT END AND FROM REDUX ARRAY AT SAME TIME
     }
 
     function roundDecimal(nombre, precision){
-        var precision = precision || 2;
+         precision = precision || 2;
         var tmp = Math.pow(10, precision);
         return Math.round( nombre*tmp )/tmp;
     }
@@ -196,25 +196,25 @@ REMOVE ITEM FROM FRONT END AND FROM REDUX ARRAY AT SAME TIME
         }
         else if((e.target.value === 'France' && totalOrder >= 30) || (e.target.value === 'Europe' && totalOrder >= 30)){
             setDeliveryFees(8)
-            var copyAdress =  {...formLivraison}
+            copyAdress =  {...formLivraison}
             copyAdress.country = e.target.value
             setFormLivraison(copyAdress)
         }
         else if(e.target.value === 'Other Country' && totalOrder < 30){
             setDeliveryFees(15)
-            var copyAdress =  {...formLivraison}
+            copyAdress =  {...formLivraison}
             copyAdress.country = e.target.value
             setFormLivraison(copyAdress)
         }
         else if(e.target.value === 'Other Country' && totalOrder >= 30){
             setDeliveryFees(21)
-            var copyAdress =  {...formLivraison}
+            copyAdress =  {...formLivraison}
             copyAdress.country = e.target.value
             setFormLivraison(copyAdress)
         }
         else{
             setDeliveryFees(25)
-            var copyAdress =  {...formLivraison}
+            copyAdress =  {...formLivraison}
             copyAdress.country = e.target.value
             setFormLivraison(copyAdress)
         }
@@ -344,8 +344,13 @@ For select menu and calculate delivery fees
                             <option value='Other Country'>Other country</option>
                         </select>
 {/*======================================================================================================================================================== */}
-
-                        <div className='buttons__validate__cart' onClick={confFormulaire}> Continue to payment</div>
+                        <div className="payment-div">
+                            <Paypal
+                            onClick={confFormulaire} 
+                            total={roundDecimal(totalOrder + deliveryFees)}
+                            deliveryAdress={userData.adress}
+                            />
+                        </div> 
                     </div>
                 </div>
                 <div className='Total__cart_container'>

@@ -1,7 +1,7 @@
-import React,{useEffect, useState} from 'react'
+import React,{useState} from 'react'
 import './SignIn.css'
 
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { signin,addUser } from '../actions/index'
 
 import { useHistory } from "react-router-dom";
@@ -54,7 +54,7 @@ function SignIn() {
             console.log(' pas ok ==> 1 minuscule 1 maguscule 1 chiffre');
 
         }else{
-            if(signUpData.password != signUpData.confPassword){
+            if(signUpData.password !== signUpData.confPassword){
 
             // message error password and confpassword different
                 console.log('pas ok ==> password and confpassword diff');
