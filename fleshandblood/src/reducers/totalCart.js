@@ -4,6 +4,8 @@ const totalReducer = (state = 0, action) => {
             return state + action.payload
         case 'DECREMENT_CART':
             return state - action.payload
+        case 'RESET_CART':
+            return 0
         default:
             return state
     }

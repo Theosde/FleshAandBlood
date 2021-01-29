@@ -15,6 +15,11 @@ export const decrement = () => {
         type:'DECREMENT'
     }
 }
+export const resetCounter = () => {
+    return{
+        type:'RESET'
+    }
+}
 export const signin = () => {
     return{
         type:'SIGN_IN'
@@ -48,6 +53,11 @@ export const removeFromTotal = (priceValueToRemove) => {
     return{
         type:'DECREMENT_CART',
         payload : priceValueToRemove
+    }
+}
+export const resetTotal = () => {
+    return{
+        type:'RESET_CART',
     }
 }
 export const changeOrder = (orderData) => {

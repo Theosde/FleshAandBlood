@@ -2,7 +2,7 @@ import React  from 'react'
 import { PayPalButton } from "react-paypal-button-v2";
 
 import { useSelector, useDispatch } from 'react-redux'
-import { decrement,addUser,changeOrder } from '../actions/index'
+import { decrement,addUser,changeOrder,resetCounter,resetTotal } from '../actions/index'
 
 import { useHistory } from "react-router-dom";
 
@@ -88,6 +88,8 @@ function Paypal(props) {
                         // maj user and vider panier
                         dispatch(addUser(data.user))
                         dispatch(changeOrder([]))
+                        dispatch(resetCounter())
+                        dispatch(resetTotal())
 
                         history.push("/")
             
