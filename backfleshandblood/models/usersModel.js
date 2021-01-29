@@ -16,7 +16,8 @@ var HistoricSchema = mongoose.Schema({
     fdp: Number,
     adress: String,
     buyername: String,
-    buyeremail: String
+    buyeremail: String,
+    deliveryname:String
 
 });
 

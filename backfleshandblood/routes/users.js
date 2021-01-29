@@ -115,7 +115,8 @@ router.post('/saveCommand', function(req, res, next) {
         fdp: req.body.ftp,
         adress: findUser.adress.street + " " + findUser.adress.zip + " " + findUser.adress.city + " " + findUser.adress.country,
         buyername: findUser.firstname + " " + findUser.lastname,
-        buyeremail: findUser.email
+        buyeremail: findUser.email,
+        deliveryname: req.body.deliveryfirstname + " " + req.body.deliverylastname
        }]
 
       // Modifier BDD
@@ -154,9 +155,58 @@ router.post('/updateAdresseLivraison', function(req, res, next) {
 
 router.get('/getUsersList', function(req, res, next) {
   usersModel.find(function(error,usersList){
-    res.json({usersList})
+
+    var historicAllOrder = []
+
+    usersList.forEach(e => {
+      if (e.historic.length != 0) {
+        e.historic.forEach(i => {
+          if (i.status === "Your order is being processed") {
+            historicAllOrder.push(i)
+          }
+        })
+      }
+    })
+
+    res.json({historicAllOrder})
   })
 });
 
+
+/* -------- POST admin change status order -------- */
+
+router.post('/changeStatusOrder', function(req, res, next) {
+
+  console.log(req.body.email);
+  console.log(req.body.idOrder);
+
+  usersModel.findOne({"email":req.body.email},function(error,findUser){
+    console.log(findUser);
+
+    var commandeChange = findUser.historic.find(e=> e._id == req.body.idOrder)
+    if (commandeChange != undefined) {
+
+
+      var newHistoric = findUser.historic.filter(histo => histo._id != req.body.idOrder )
+
+
+      commandeChange.status = "your order has been sent "
+      console.log("commandeChange",commandeChange);
+      newHistoric.push(commandeChange)
+      console.log("newHistoric",newHistoric);
+
+    }
+
+    usersModel.findOneAndUpdate(
+      {"_id":findUser._id},
+      {"historic":newHistoric},
+      {new:true},
+      function(error,userupdate){
+      res.json({result:true,user:userupdate})
+      }
+    )
+
+  })
+});
 
 module.exports = router;

@@ -9,38 +9,48 @@ function Command() {
 
 
     
-    const [allUsersInfos,setAllUsersInfos] = useState([])
+    const [allHistoric,setAllHistoric] = useState([])
+
+    const [recharge,setRecharge] = useState(false)
+
 //========================================================================================================================================================
 /* 
 USEEFFECT THAT HAPPENS WHEN COMPONENT LOAD
 */
 //========================================================================================================================================================
     useEffect(() => {
-            if(isLogged && userData.arr.email === 'arnaud.rey.job@gmail.com'){
+        if(isLogged && userData.arr.email === 'arnaud.rey.job@gmail.com'){
 
             fetch("http://localhost:3000/users/getUsersList",{
                 method: "get",
             }).then(response=> {
-                
                 return response.json()
             })
             .then(data=>{
-                console.log("retour fetch users",data);
-                console.log('=======================================================')
-                console.log(data)
-                console.log('=======================================================')
-                setAllUsersInfos(data)
+                console.log("retour fetch historic all users",data);
+                setAllHistoric(data.historicAllOrder)
             })
             .catch((error)=>{
                 console.log("Request failed recup users list : ", error );
-        })
+            })
         }
     }, [])
 
 
     useEffect(() => {
-
-    }, [allUsersInfos])
+        fetch("http://localhost:3000/users/getUsersList",{
+            method: "get",
+        }).then(response=> {
+            return response.json()
+        })
+        .then(data=>{
+            console.log("retour fetch historic all users",data);
+            setAllHistoric(data.historicAllOrder)
+        })
+        .catch((error)=>{
+            console.log("Request failed recup users list : ", error );
+        })
+    }, [recharge])
 
 //========================================================================================================================================================
 /* 
@@ -72,15 +82,40 @@ function translateDate (datePassed){
     return newdate
 }
 
+function changeStatus (email,idOrder){
+
+    fetch("http://localhost:3000/users/changeStatusOrder",{
+        method: "POST",
+        body: JSON.stringify({
+            email:email,
+            idOrder:idOrder
+        }),
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          }
+    }).then(response=> {
+        return response.json()
+    })
+    .then(data=>{
+        console.log("retour fetch change status order",data.user);
+        setRecharge(!recharge)
+
+
+    })
+    .catch((error)=>{
+        console.log("Request failed recup user", error );
+    })
+
+}
+
 //========================================================================================================================================================
 /* 
 DOUBLE LOOP TO GET COMMAND HISTORY OF USER AND HIS COMMAND DETAIL
 */
 //========================================================================================================================================================
 var commandeHistoryList = commandHistory.map(function(item,i){
-
     var commandToShow =  item.article.map(function(element, i){
-        console.log(element)
         return <div  className='historic__product__card' key={i}>
                     {/* <img className='historic__product__img' src={element.url} alt=''></img> */}
                     <div className='historic__product__info'>
@@ -101,7 +136,7 @@ var commandeHistoryList = commandHistory.map(function(item,i){
                 </div>
                 <div className='command__array__header_ligne2'>
                     <div>{translateDate(item.date)}</div>
-                    <div>{item.total} €</div>
+                    <div>{item.total+item.fdp} €</div>
                     <div>{item.adress}</div>
                     <div >{item.status==="Order in progress"?<div>{item.status}</div>
                     :item.status}</div>
@@ -131,53 +166,59 @@ RETURN ADMIN
 //========================================================================================================================================================
 else if(isLogged && userData.arr.email === 'arnaud.rey.job@gmail.com'){
 
+    console.log("allHistoric",allHistoric);
 
     return(
         <div className='command__page'>
 
-            <div className='command__array'>
-                <div className='command__array__header'>
-                    <div className='command__array__header_ligne1'>
-                        <div>Date de commande</div>
-                        <div>Total de la commande</div>
-                        <div>Adresse client</div>
-                        <div>Acheteur</div>
-                        <div>Frais de port</div>
-                        <div>Status de la commande</div>
+            {allHistoric.map(historic => {
+                console.log("historic",historic);
+
+
+                return(
+                    <div className='command__array'>
+                    <div className='command__array__header'>
+                        <div className='command__array__header_ligne1'>
+                            <div>Date de commande</div>
+                            <div>Total de la commande</div>
+                            <div>Adresse client</div>
+                            <div>Acheteur</div>
+                            <div>Frais de port</div>
+                            <div>Status de la commande</div>
+                        </div>
+                        <div className='command__array__header_ligne2'>
+                            <div>{translateDate(historic.date)}</div>
+                            <div>{historic.total} €</div>
+                            <div>{historic.adress}</div>
+                            <div>{historic.buyername}</div>
+                            <div>{historic.fdp}€</div>
+                            <div style={{display:'flex',alignItems:'center'}}>Doit etre posté <CheckIcon onClick={()=> changeStatus(historic.buyeremail,historic._id)} style={{color:'#0BD187',fontWeight:1800,marginLeft:10,cursor:'pointer',fontSize:30}}/></div>
+
+                        </div>
                     </div>
-                    <div className='command__array__header_ligne2'>
-                        <div>2021-10-10</div>
-                        <div>350 €</div>
-                        <div>2 Rue de la fraternité 69100 villeurbanne FRANCE</div>
-                        <div>Ting Ting</div>
-                        <div>7.60€</div>
-                        <div style={{display:'flex',alignItems:'center'}}>Doit etre posté <CheckIcon style={{color:'#0BD187',fontWeight:1800,marginLeft:10,cursor:'pointer',fontSize:30}}/></div>
-                        
+                    <div className='command__array__list'>
+                        {historic.article.map(card => {
+                            return(
+                                <div className='admin__detail'>
+                                    <div> {card.title}</div>
+                                    <div> Price : {card.price}€ /unit</div>
+                                    <div> Quantity : {card.quantity}</div>
+                                </div>)
+                        })}
+
                     </div>
                 </div>
-                <div className='command__array__list'>
-                    <div className='admin__detail'>
-                        <div> Name</div>
-                        <div> Price : 15€ /unit</div>
-                        <div> Quantity : 1</div>
-                    </div>
-                    <div className='admin__detail'>
-                        <div> Name</div>
-                        <div> Price :  8€ /unit</div>
-                        <div> Quantity : 2</div>
-                    </div>
-                    <div className='admin__detail'>
-                        <div> Name</div>
-                        <div> Price : 35€ /unit</div>
-                        <div> Quantity : 1</div>
-                    </div>
-                </div>
-            </div>
+                )
+
+            })}
+
+
 
         </div>
     )
 }
-else{return(
+else{
+    return(
     <div className='command__page'>
         {history.push("/sign-in")}
     </div>
