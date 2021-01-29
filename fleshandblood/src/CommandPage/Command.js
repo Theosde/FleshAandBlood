@@ -1,10 +1,46 @@
-import React from 'react'
+import React,{useEffect, useState} from 'react'
 import './Command.css'
 import { useSelector } from 'react-redux'
 import { useHistory } from "react-router-dom";
 import CheckIcon from '@material-ui/icons/Check';
 
 function Command() {
+
+
+
+    
+    const [allUsersInfos,setAllUsersInfos] = useState([])
+//========================================================================================================================================================
+/* 
+USEEFFECT THAT HAPPENS WHEN COMPONENT LOAD
+*/
+//========================================================================================================================================================
+    useEffect(() => {
+            if(isLogged && userData.arr.email === 'arnaud.rey.job@gmail.com'){
+
+            fetch("http://localhost:3000/users/getUsersList",{
+                method: "get",
+            }).then(response=> {
+                
+                return response.json()
+            })
+            .then(data=>{
+                console.log("retour fetch users",data);
+                console.log('=======================================================')
+                console.log(data)
+                console.log('=======================================================')
+                setAllUsersInfos(data)
+            })
+            .catch((error)=>{
+                console.log("Request failed recup users list : ", error );
+        })
+        }
+    }, [])
+
+
+    useEffect(() => {
+
+    }, [allUsersInfos])
 
 //========================================================================================================================================================
 /* 
@@ -14,31 +50,12 @@ REDUX STATE
 const isLogged = useSelector(state => state.isLogged)
 const userData = useSelector(state => state.user)
 
-console.log(userData.arr)
+console.log(userData.arr.historic)
 
 
 var history = useHistory()
 
-var commandHistory = [
-    {
-        article:[
-            {url:'https://res.cloudinary.com/dzqfghzga/image/upload/v1610630071/FleshAndBlood/wtr/wtr014_l3g6q8.png', name:'GLINT OF QUICKSLIVER', quantity:2, price:19},
-            {url:'https://res.cloudinary.com/dzqfghzga/image/upload/v1610630070/FleshAndBlood/wtr/wtr007_ohsxwm.png', name:'TOME OF FYENDAL', quantity:2, price:35}
-        ], 
-        date:'2021-01-15T14:47:35.511+00:00',
-        total:108,
-        status:'Finished'
-    },
-    {
-        article:[
-            {url:'https://res.cloudinary.com/dzqfghzga/image/upload/v1610630070/FleshAndBlood/wtr/wtr011_wdfqox.png', name:'CRIPPLING CRUSH', quantity:2, price:22},
-            {url:'https://res.cloudinary.com/dzqfghzga/image/upload/v1610630071/FleshAndBlood/wtr/wtr015_k2iarp.png', name:'SPINAL CRUSH', quantity:1, price:15}
-        ], 
-        date:'2021-02-15T14:47:35.511+00:00',
-        total:59,
-        status:'Order in progress'
-    }
-]
+var commandHistory = userData.arr.historic
 
 //========================================================================================================================================================
 /* 
@@ -63,41 +80,42 @@ DOUBLE LOOP TO GET COMMAND HISTORY OF USER AND HIS COMMAND DETAIL
 var commandeHistoryList = commandHistory.map(function(item,i){
 
     var commandToShow =  item.article.map(function(element, i){
+        console.log(element)
         return <div  className='historic__product__card' key={i}>
                     {/* <img className='historic__product__img' src={element.url} alt=''></img> */}
                     <div className='historic__product__info'>
-                        <div className='historic__product__name'>{element.name}</div>
+                        <div className='historic__product__name'>{element.title}</div>
                         <div className='historic__product__price'>Price : {element.price} € / unit</div>
                         <div className='historic__product__quantity'>Quantity : {element.quantity}</div>
                     </div>
                 </div>
     })
-    return<div className='command__array'>
+    return<div className='command__array' key={i}>
 
             <div className='command__array__header'>
                 <div className='command__array__header_ligne1'>
                     <div>DATE</div>
                     <div>TOTAL</div>
-                    <div>DELIVERED TO</div>
+                    <div>DELIVERY ADRESS</div>
                     <div>STATUS</div>
                 </div>
                 <div className='command__array__header_ligne2'>
                     <div>{translateDate(item.date)}</div>
                     <div>{item.total} €</div>
-                    <div>2 Rue de la fraternité 69100 villeurbanne</div>
+                    <div>{item.adress}</div>
                     <div >{item.status==="Order in progress"?<div>{item.status}</div>
                     :item.status}</div>
                 </div>
             </div>
             <div className='command__array__list'>
-            {commandToShow}
+                {commandToShow}
             </div>
         </div>
         })
 
 //========================================================================================================================================================
 /* 
-RETURN
+RETURN USER
 */
 //========================================================================================================================================================
     if(isLogged && userData.arr.email !== 'arnaud.rey.job@gmail.com'){return (
@@ -105,7 +123,15 @@ RETURN
             {commandeHistoryList}
         </div>
     )
-} else if(isLogged && userData.arr.email === 'arnaud.rey.job@gmail.com'){
+} 
+//========================================================================================================================================================
+/* 
+RETURN ADMIN
+*/
+//========================================================================================================================================================
+else if(isLogged && userData.arr.email === 'arnaud.rey.job@gmail.com'){
+
+
     return(
         <div className='command__page'>
 

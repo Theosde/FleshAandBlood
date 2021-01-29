@@ -24,7 +24,7 @@ router.post('/signup', function(req, res, next) {
 
   usersModel.findOne({email:req.body.email},function(error,findUser){
     if (findUser) {
-      res.json({result:false, error:"cette email est déja lie a un compte"})
+      res.json({result:false, error:"This Email has already been used"})
     }else {
 
       var newUser = new usersModel({
@@ -81,11 +81,11 @@ router.post('/signin', function(req, res, next) {
 
       }else {
         console.log("password fail");
-        res.json({result:false, error:"password"})
+        res.json({result:false, error:"Wrong password"})
       }
 
     }else {
-      res.json({result:false, error:"email"})
+      res.json({result:false, error:"This Email is not valid"})
     }
   });
 })
@@ -110,8 +110,8 @@ router.post('/saveCommand', function(req, res, next) {
       historiComand = [...findUser.historic, {
         date: dateNow,
         total: req.body.total,
-        article: [req.body.panier],
-        status: "Paid",
+        article: req.body.panier,
+        status: "Your order is being processed",
         fdp: req.body.ftp,
         adress: findUser.adress.street + " " + findUser.adress.zip + " " + findUser.adress.city + " " + findUser.adress.country,
         buyername: findUser.firstname + " " + findUser.lastname,
@@ -148,6 +148,14 @@ router.post('/updateAdresseLivraison', function(req, res, next) {
     }
   )
 
+});
+
+/* -------- GET all users -------- */
+
+router.get('/getUsersList', function(req, res, next) {
+  usersModel.find(function(error,usersList){
+    res.json({usersList})
+  })
 });
 
 
