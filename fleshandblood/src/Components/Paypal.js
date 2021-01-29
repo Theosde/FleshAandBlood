@@ -1,19 +1,23 @@
-import React  from 'react'
+import React,{useState}  from 'react'
 import { PayPalButton } from "react-paypal-button-v2";
 
 import { useDispatch } from 'react-redux'
 import { addUser,changeOrder,resetCounter,resetTotal } from '../actions/index'
 
 import { useHistory } from "react-router-dom";
+import './Paypal.css'
 
 
 function Paypal(props) {
     const dispatch = useDispatch()
     var history = useHistory()
 
+    const [isLoading , setIsLoading] = useState(false)
+    
 
         return (
-          <PayPalButton
+            <div>
+          <PayPalButton style={{display:isLoading?'none':'block'}} 
         
             createOrder={(data, actions) => {
                 
@@ -35,10 +39,10 @@ function Paypal(props) {
 
             onApprove={(data, actions) => {
                 console.log('OK FOR PAYMENT')
-
+                setIsLoading(true)
                 // Capture the funds from the transaction
                 return actions.order.capture().then(function(details) {
-
+                   
 
                 // ---------------- ROUTE verfi and decrement BDD ----------------- //
 
@@ -94,26 +98,10 @@ function Paypal(props) {
                     .catch((error)=>{
                         console.log("Request failed recup user", error );
                     })
-
-
-
-
-        
                 })
                 .catch((error)=>{
                     console.log("Request failed recup user", error );
                 })
-
-
-
-
-
-
-
-
-
-
-
 
                 })
 
@@ -127,7 +115,9 @@ function Paypal(props) {
                     console.log(err)
                     return<div>Something went wrong! please try again in a few min</div>
                 }}
-          />
+               
+          /> <div className='overlay' style={{display:isLoading?"block":"none"}}></div>
+          </div>
         );
     }
 
