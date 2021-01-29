@@ -1,8 +1,8 @@
 import React  from 'react'
 import { PayPalButton } from "react-paypal-button-v2";
 
-import { useSelector, useDispatch } from 'react-redux'
-import { decrement,addUser,changeOrder,resetCounter,resetTotal } from '../actions/index'
+import { useDispatch } from 'react-redux'
+import { addUser,changeOrder,resetCounter,resetTotal } from '../actions/index'
 
 import { useHistory } from "react-router-dom";
 
@@ -14,7 +14,7 @@ function Paypal(props) {
 
         return (
           <PayPalButton
-
+        
             createOrder={(data, actions) => {
                 
                 console.log('ORDER CREATED')
@@ -39,9 +39,6 @@ function Paypal(props) {
                 // Capture the funds from the transaction
                 return actions.order.capture().then(function(details) {
 
-
-                // Show a success message to your buyer
-                alert("Transaction completed by " + details.payer.name.given_name);
 
                 // ---------------- ROUTE verfi and decrement BDD ----------------- //
 
@@ -91,7 +88,7 @@ function Paypal(props) {
                         dispatch(resetCounter())
                         dispatch(resetTotal())
 
-                        history.push("/")
+                        history.push("/payment-success")
             
                     })
                     .catch((error)=>{

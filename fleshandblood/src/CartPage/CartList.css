@@ -74,6 +74,17 @@
     box-shadow: 0 5px 10px rgba(0,0,0,.2);
     cursor: pointer;
 }
+.buttons_gotopayment{
+    background-color: white;
+    min-width: 150px;
+    text-align: center;
+    padding: 10px 15px;
+    margin-top: 25px;
+    color: #999;
+    transition: 0.5s linear;
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    cursor: pointer;
+}
 .buttons__return__cart2{
     position: fixed;
     cursor: pointer;
@@ -88,7 +99,7 @@
     transition: 0.5s linear;
     box-shadow: 0 5px 10px rgba(0,0,0,.2); 
 }
-.buttons__return__cart:hover{
+.buttons__return__cart:hover,.buttons_gotopayment:hover{
     background-color: black;
     color: white;
 }

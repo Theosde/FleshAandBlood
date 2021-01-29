@@ -1,0 +1,25 @@
+.command__validation__container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.command__validation__container .btn__addToCart{
+    text-align: center;
+    width: auto;
+    margin-top: 55px;
+}
+.command__validation{
+    background-color: white;
+    box-sizing: border-box;
+    padding: 35px 55px;
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.command__validation .MuiSvgIcon-root{
+    color: green;
+    font-size: 75px;
+}

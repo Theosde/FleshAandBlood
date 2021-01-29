@@ -26,6 +26,8 @@ STATE, SELECTOR FOR REDUX AND USE EFFECT
     const  [totalOrder,setTotalOrder] = useState(0)
     const  [deliveryFees,setDeliveryFees] = useState(4)
     const  [formLivraison,setFormLivraison] = useState({firstname:"",lastname:"",adress:"",zip:"",city:"",country:""})
+    const  [isOkToPay,setIsOkToPay] = useState(false)
+    const  [error,setError] = useState("")
 
     const CartList = useSelector(state => state.cart)
     const userData = useSelector(state => state.user)
@@ -71,7 +73,7 @@ STATE, SELECTOR FOR REDUX AND USE EFFECT
 
     useEffect(() => {
         
-    }, [cart,totalOrder])
+    }, [cart,totalOrder,error])
 
 
 
@@ -98,7 +100,7 @@ REMOVE ITEM FROM FRONT END AND FROM REDUX ARRAY AT SAME TIME
     var confFormulaire = ()=>{
         console.log(userData.arr);
         console.log(formLivraison);
-       
+
         fetch("http://localhost:3000/users/updateAdresseLivraison",{
             method: "POST",
             body: JSON.stringify({
@@ -106,6 +108,8 @@ REMOVE ITEM FROM FRONT END AND FROM REDUX ARRAY AT SAME TIME
                 street:formLivraison.adress,
                 zip:formLivraison.zip,
                 city:formLivraison.city,
+                deliveryfirstname: formLivraison.firstname,
+                deliverylastname : formLivraison.lastname,
                 country:formLivraison.country}),
             headers: {
                 'Accept': 'application/json',
@@ -122,6 +126,7 @@ REMOVE ITEM FROM FRONT END AND FROM REDUX ARRAY AT SAME TIME
             console.log("INFO FORMULAIRE",formLivraison);
             console.log("INFO PANIER",cart);
             console.log("TOTAL PANIER",roundDecimal(totalOrder,2));
+            setIsOkToPay(true)
 
         })
         .catch((error)=>{
@@ -221,6 +226,7 @@ REMOVE ITEM FROM FRONT END AND FROM REDUX ARRAY AT SAME TIME
 
     function resetSelectedCountry(){
         setElementToDisplay(0)
+        setIsOkToPay(false)
         setDeliveryFees(totalOrder >= 30? 8:4)
     }
 
@@ -306,27 +312,27 @@ IF clicked on order and cart not empty
             <div className='cart__cartList' style={{paddingTop:0}}>
                 <div style={{minHeight:'85vh',maxHeight:'90vh',display:'flex',justifyContent:'center',alignItems:'center',width:'100%',marginTop:0}}>
                     <div className='form__container__payment'>
-                        <input type='text' placeholder='LastName' value={formLivraison.lastname} onChange={(e)=>{
+                        <input required type='text' placeholder='LastName' value={formLivraison.lastname} onChange={(e)=>{
                             var copyFormLivraison = {...formLivraison}
                             copyFormLivraison.lastname = e.target.value
                             setFormLivraison(copyFormLivraison)
                         }} ></input>
-                        <input type='text' placeholder='FirstName' value={formLivraison.firstname} onChange={(e)=>{
+                        <input required type='text' placeholder='FirstName' value={formLivraison.firstname} onChange={(e)=>{
                             var copyFormLivraison = {...formLivraison}
                             copyFormLivraison.firstname = e.target.value
                             setFormLivraison(copyFormLivraison)
                         }} ></input>
-                        <input type='text' placeholder='Delivery Adress' value={formLivraison.adress} onChange={(e)=>{
+                        <input required type='text' placeholder='Delivery Adress' value={formLivraison.adress} onChange={(e)=>{
                             var copyFormLivraison = {...formLivraison}
                             copyFormLivraison.adress = e.target.value
                             setFormLivraison(copyFormLivraison)
                         }} ></input>
-                        <input type='text' placeholder='City' value={formLivraison.city} onChange={(e)=>{
+                        <input required type='text' placeholder='City' value={formLivraison.city} onChange={(e)=>{
                             var copyFormLivraison = {...formLivraison}
                             copyFormLivraison.city = e.target.value
                             setFormLivraison(copyFormLivraison)
                         }} ></input>
-                        <input type='text' placeholder='Zip' value={formLivraison.zip} onChange={(e)=>{
+                        <input required type='text' placeholder='Zip' value={formLivraison.zip} onChange={(e)=>{
                             var copyFormLivraison = {...formLivraison}
                             copyFormLivraison.zip = e.target.value
                             setFormLivraison(copyFormLivraison)
@@ -343,16 +349,24 @@ For select menu and calculate delivery fees
                             <option value='Other Country'>Other country</option>
                         </select>
 {/*======================================================================================================================================================== */}
-                        <div className="payment-div">
+                        <div className='error__message__login'>{error}</div>
+                        <div className="payment-div">{isOkToPay?
                             <Paypal
-                            onClick={confFormulaire} 
                             totalFtp={roundDecimal(totalOrder + deliveryFees)}
                             total={roundDecimal(totalOrder)}
                             userData={userData.arr}
                             panier={cart}
                             ftp={deliveryFees}
-                            />
-                        </div> 
+                            />:<div className="buttons_gotopayment" onClick={()=>{
+                                if(formLivraison.firstname!=""&&formLivraison.lastname!==""&&formLivraison.adress!==""&&formLivraison.zip!==""&&formLivraison.city!==""&&formLivraison.country!==""){
+                                confFormulaire()
+                                setError("")
+                            }else{
+                               setError('One of the field is empty')
+                            }
+                            }} >Go to payment</div>} 
+                        </div>
+                        
                     </div>
                 </div>
                 <div className='Total__cart_container'>

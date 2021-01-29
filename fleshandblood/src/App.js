@@ -18,7 +18,8 @@ import ArcSealed from "./CataloguePage/product/ArcSealed";
 import CruSealed from "./CataloguePage/product/CruSealed";
 import MonSealed from "./CataloguePage/product/MonSealed";
 import SignIn from "./ContactPage/SignIn";
-import Command from "./CommandPage/Command"
+import Command from "./CommandPage/Command";
+import Paymentok from "./Components/Paymentok";
 
 
 const store = createStore(allReducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
@@ -71,6 +72,9 @@ function App() {
         </Route>
         <Route  path="/my-command">
           <Command/>
+        </Route>
+        <Route  path="/payment-success">
+          <Paymentok/>
         </Route>
       </Router>
     </Provider>

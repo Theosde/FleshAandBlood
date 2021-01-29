@@ -45,3 +45,11 @@
     background-color: black;
     color: white;
 }
+.error__message__login{
+    margin-top: 10px;
+    color: red;
+    box-sizing: border-box;
+    padding: 7px 25px;
+    text-align: center;
+    font-size: 12px;
+}
