@@ -5,7 +5,9 @@ import { useDispatch } from 'react-redux'
 import { addUser,changeOrder,resetCounter,resetTotal } from '../actions/index'
 
 import { useHistory } from "react-router-dom";
+import Loadingbar from './Loadingbar'
 import './Paypal.css'
+
 
 
 function Paypal(props) {
@@ -76,6 +78,7 @@ function Paypal(props) {
                             panier: props.panier,
                             ftp:props.ftp,
                             paid: true,
+                            deliveryname: props.deliveryname,
                         }),
                         headers: {
                             'Accept': 'application/json',
@@ -91,7 +94,7 @@ function Paypal(props) {
                         dispatch(changeOrder([]))
                         dispatch(resetCounter())
                         dispatch(resetTotal())
-
+                        setIsLoading(false)
                         history.push("/payment-success")
             
                     })
@@ -116,7 +119,9 @@ function Paypal(props) {
                     return<div>Something went wrong! please try again in a few min</div>
                 }}
                
-          /> <div className='overlay' style={{display:isLoading?"block":"none"}}></div>
+          /> <div className='overlay' style={{display:isLoading?"flex":"none"}}>
+              <Loadingbar/>
+          </div>
           </div>
         );
     }

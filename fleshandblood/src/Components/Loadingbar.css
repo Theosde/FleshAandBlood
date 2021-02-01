@@ -1,0 +1,38 @@
+.fullbar{
+    width: 100%;
+    max-width: 400px;
+    height: 10px;
+    background: #e1e4e8;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 10px 0;
+}
+.fullbar1{
+    display: block;
+    height: 100%;
+    background-image: linear-gradient(to right, #35a3d3, #14b5df, #00c8e7, #00d9eb, 
+     #12ebeb, #00d9eb,#00c8e7,#14b5df,#35a3d3,
+    #14b5df, #00c8e7, #00d9eb, #12ebeb, #00d9eb,#00c8e7,#14b5df,#35a3d3,
+    #14b5df, #00c8e7, #00d9eb, #12ebeb, #00d9eb,#00c8e7,#14b5df,#35a3d3);
+    background-size: 300% 100%;
+    animation: progress-animation 2s linear infinite;
+}
+@keyframes progress-animation{
+    0%{
+        background-position: 100%
+    }
+    100%{
+        background-position: 0
+    }
+    }
+    
+    @media screen and (max-width: 759px){
+        .fullbar{
+        max-width: 300px;
+        }
+    }
+    @media screen and (max-width: 300px){
+        .fullbar{
+        max-width: 240px;
+        }
+    }
