@@ -116,7 +116,7 @@ router.post('/saveCommand', function(req, res, next) {
         adress: findUser.adress.street + " " + findUser.adress.zip + " " + findUser.adress.city + " " + findUser.adress.country,
         buyername: findUser.firstname + " " + findUser.lastname,
         buyeremail: findUser.email,
-        deliveryname: req.body.deliveryfirstname + " " + req.body.deliverylastname
+        deliveryname: req.body.deliveryname
        }]
 
       // Modifier BDD

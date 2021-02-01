@@ -357,6 +357,7 @@ For select menu and calculate delivery fees
                             userData={userData.arr}
                             panier={cart}
                             ftp={deliveryFees}
+                            deliveryname={formLivraison.firstname +' '+formLivraison.lastname}
                             />:<div className="buttons_gotopayment" onClick={()=>{
                                 if(formLivraison.firstname!=""&&formLivraison.lastname!==""&&formLivraison.adress!==""&&formLivraison.zip!==""&&formLivraison.city!==""&&formLivraison.country!==""){
                                 confFormulaire()
