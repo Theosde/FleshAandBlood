@@ -25,7 +25,7 @@ function SignIn() {
 
     var signIn = ()=>{
 
-        fetch("http://localhost:3000/users/signin",{
+        fetch("/users/signin",{
             method: "POST",
             body: JSON.stringify({email:signInData.email,password:signInData.password}),
             headers: {
