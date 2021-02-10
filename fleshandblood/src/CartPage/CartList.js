@@ -28,6 +28,7 @@ STATE, SELECTOR FOR REDUX AND USE EFFECT
     const  [formLivraison,setFormLivraison] = useState({firstname:"",lastname:"",adress:"",zip:"",city:"",country:""})
     const  [isOkToPay,setIsOkToPay] = useState(false)
     const  [error,setError] = useState("")
+    const  [ifbox,setifbox] = useState(false)
 
     const CartList = useSelector(state => state.cart)
     const userData = useSelector(state => state.user)
@@ -45,6 +46,10 @@ STATE, SELECTOR FOR REDUX AND USE EFFECT
             if(cardListOrder.find(e=> e.title === cards.title) === undefined){
                 cards.quantity = CartList.arr.filter(e => e.title.includes(cards.title)).length
                 cardListOrder.push(cards)
+            }
+            console.log(cards)
+            if(cards.category === undefined){
+                setifbox(true)
             }
         });
 
@@ -189,8 +194,13 @@ REMOVE ITEM FROM FRONT END AND FROM REDUX ARRAY AT SAME TIME
 //========================================================================================================================================================
     function selectCountry (e){
         if(e.target.value === ''){
-            setDeliveryFees(4)
-            console.log(deliveryFees)
+            if(ifbox){
+                setDeliveryFees(15)
+                console.log(deliveryFees)
+            }else{
+                setDeliveryFees(4)
+                console.log(deliveryFees)
+            } 
         }
         else if((e.target.value === 'France' && totalOrder < 30) || (e.target.value === 'Europe' && totalOrder < 30)){
             setDeliveryFees(4)
@@ -199,10 +209,19 @@ REMOVE ITEM FROM FRONT END AND FROM REDUX ARRAY AT SAME TIME
             setFormLivraison(copyAdress)
         }
         else if((e.target.value === 'France' && totalOrder >= 30) || (e.target.value === 'Europe' && totalOrder >= 30)){
-            setDeliveryFees(8)
-            copyAdress =  {...formLivraison}
-            copyAdress.country = e.target.value
-            setFormLivraison(copyAdress)
+            if(ifbox){
+                setDeliveryFees(15)
+                console.log(deliveryFees)
+                copyAdress =  {...formLivraison}
+                copyAdress.country = e.target.value
+                setFormLivraison(copyAdress)
+            }else{
+                setDeliveryFees(8)
+                copyAdress =  {...formLivraison}
+                copyAdress.country = e.target.value
+                setFormLivraison(copyAdress)
+            }
+            
         }
         else if(e.target.value === 'Other Country' && totalOrder < 30){
             setDeliveryFees(15)
@@ -211,10 +230,17 @@ REMOVE ITEM FROM FRONT END AND FROM REDUX ARRAY AT SAME TIME
             setFormLivraison(copyAdress)
         }
         else if(e.target.value === 'Other Country' && totalOrder >= 30){
-            setDeliveryFees(21)
-            copyAdress =  {...formLivraison}
-            copyAdress.country = e.target.value
-            setFormLivraison(copyAdress)
+            if(ifbox){
+                setDeliveryFees(35)
+                copyAdress =  {...formLivraison}
+                copyAdress.country = e.target.value
+                setFormLivraison(copyAdress)
+            }else{
+                setDeliveryFees(21)
+                copyAdress =  {...formLivraison}
+                copyAdress.country = e.target.value
+                setFormLivraison(copyAdress)
+            }
         }
         else{
             setDeliveryFees(25)
@@ -232,7 +258,11 @@ REMOVE ITEM FROM FRONT END AND FROM REDUX ARRAY AT SAME TIME
 
     function goBackAndComeBackBugFix(){
         if(totalOrder >= 30){
-            setDeliveryFees(8)
+            if(ifbox){
+                setDeliveryFees(15)
+            }else{
+                setDeliveryFees(8)
+            }
         }else{
             setDeliveryFees(4)
         }
@@ -261,6 +291,10 @@ RETURN
                                 copyTotal = copyTotal - item.price*item.quantity
                                 setTotalOrder(copyTotal)
                                 removeFromList({index:i,quantity:item.quantity})
+                                
+                                if(cart.find(e => e.category === undefined) === undefined){
+                                    setifbox(false)
+                                }
                             }} 
                             style={{color:'red', cursor:'pointer',fontSize:'25'}}/>
                     </div>
