@@ -21,7 +21,7 @@ USEEFFECT THAT HAPPENS WHEN COMPONENT LOAD
     useEffect(() => {
         if(isLogged && userData.arr.email === 'arnaud.rey.job@gmail.com'){
 
-            fetch("http://localhost:3000/users/getUsersList",{
+            fetch("/users/getUsersList",{
                 method: "get",
             }).then(response=> {
                 return response.json()
@@ -38,7 +38,7 @@ USEEFFECT THAT HAPPENS WHEN COMPONENT LOAD
 
 
     useEffect(() => {
-        fetch("http://localhost:3000/users/getUsersList",{
+        fetch("/users/getUsersList",{
             method: "get",
         }).then(response=> {
             return response.json()
@@ -84,7 +84,7 @@ function translateDate (datePassed){
 
 function changeStatus (email,idOrder){
 
-    fetch("http://localhost:3000/users/changeStatusOrder",{
+    fetch("/users/changeStatusOrder",{
         method: "POST",
         body: JSON.stringify({
             email:email,

@@ -14,7 +14,7 @@ function Wtr() {
 
     useEffect(() => {
 
-        fetch("http://localhost:3000/wtrCards",{
+        fetch("/wtrCards",{
             method: "get",
         }).then(response=> {
             return response.json()

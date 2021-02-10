@@ -106,7 +106,7 @@ REMOVE ITEM FROM FRONT END AND FROM REDUX ARRAY AT SAME TIME
         console.log(userData.arr);
         console.log(formLivraison);
 
-        fetch("http://localhost:3000/users/updateAdresseLivraison",{
+        fetch("/users/updateAdresseLivraison",{
             method: "POST",
             body: JSON.stringify({
                 idUser:userData.arr._id,
@@ -141,7 +141,7 @@ REMOVE ITEM FROM FRONT END AND FROM REDUX ARRAY AT SAME TIME
     }
 
     var verifBDD = ()=>{
-        fetch("http://localhost:3000/verifQuantityBDD",{
+        fetch("/verifQuantityBDD",{
             method: "POST",
             body: JSON.stringify({
                 panier:cart,

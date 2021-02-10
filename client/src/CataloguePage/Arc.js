@@ -13,7 +13,7 @@ function Arc() {
 
     useEffect(() => {
 
-        fetch("http://localhost:3000/arcCards",{
+        fetch("/arcCards",{
             method: "get",
         }).then(response=> {
             return response.json()

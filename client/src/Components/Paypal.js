@@ -48,7 +48,7 @@ function Paypal(props) {
 
                 // ---------------- ROUTE verfi and decrement BDD ----------------- //
 
-                fetch("http://localhost:3000/verifQuantityBDD",{
+                fetch("/verifQuantityBDD",{
                     method: "POST",
                     body: JSON.stringify({
                         panier: props.panier,
@@ -70,7 +70,7 @@ function Paypal(props) {
                     console.log(props.ftp);
 
                     // ---------------- ROUTE Save historic order ----------------- //
-                    fetch("http://localhost:3000/users/saveCommand",{
+                    fetch("/users/saveCommand",{
                         method: "POST",
                         body: JSON.stringify({
                             idUser : props.userData._id,

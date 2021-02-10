@@ -13,7 +13,7 @@ function Mon() {
 
     useEffect(() => {
 
-        fetch("http://localhost:3000/monCards",{
+        fetch("/monCards",{
             method: "get",
         }).then(response=> {
             return response.json()

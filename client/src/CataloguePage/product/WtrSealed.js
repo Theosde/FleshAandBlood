@@ -12,7 +12,7 @@ function WtrSealed() {
 
     useEffect(() => {
 
-        fetch("http://localhost:3000/productSealed",{
+        fetch("/productSealed",{
             method: "POST",
             body: JSON.stringify({edition:"wtr"}),
             headers: {

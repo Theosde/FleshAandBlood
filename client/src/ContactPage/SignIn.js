@@ -72,7 +72,7 @@ function SignIn() {
             }else{
                 console.log('ok');
 
-                fetch("http://localhost:3000/users/signup",{
+                fetch("/users/signup",{
                     method: "POST",
                     body: JSON.stringify({
                         firstname:signUpData.firstname,

@@ -13,7 +13,7 @@ function Cru() {
 
     useEffect(() => {
 
-        fetch("http://localhost:3000/cruCards",{
+        fetch("/cruCards",{
             method: "get",
         }).then(response=> {
             return response.json()
